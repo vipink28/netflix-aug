@@ -6,9 +6,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Homescreen from './pages/Homescreen';
 import Browse from './pages/Browse';
 import BrowseByGenre from './pages/BrowseByGenre';
+import Navigation from './components/Navigation';
 function App() {
   return (
    <BrowserRouter>
+   <Navigation />
     <Routes>
       <Route path="/" element={<Homescreen />}></Route>
       <Route path="/browse" element={<Browse />}></Route>
