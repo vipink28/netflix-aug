@@ -2,7 +2,7 @@
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from '../../helper/axios';
-import { requests } from "../../helper/requests";
+import { endpoints, platform, requests } from "../../helper/requests";
 
 
 const initialState = {
@@ -10,6 +10,11 @@ const initialState = {
         status:"idle",
         data:null,
         error: null
+    },
+    popularTv:{
+      status:"idle",
+      data:null,
+      error: null
     }
 }
 
@@ -21,6 +26,13 @@ export const fetchNetflixOriginals = createAsyncThunk(
     }
   );
 
+  export const fetchPopularTv = createAsyncThunk(
+    'tv/fetchPopularTv',
+    async () => {
+      const response = await axios.get(requests.getCollection(platform.tv,endpoints.popular));
+      return response.data;
+    }
+  );
 
 
 export const tvSlice = createSlice({
@@ -36,9 +48,26 @@ export const tvSlice = createSlice({
         state.netflixOriginals.status = "success";
         state.netflixOriginals.data = action.payload;
     })
+    .addCase(fetchNetflixOriginals.rejected, (state, action)=>{
+        state.netflixOriginals.status = "failed";
+        state.netflixOriginals.error = action.error;
+    })
+    .addCase(fetchPopularTv.pending, (state)=>{
+      state.popularTv.status = "loading";
+    })
+    .addCase(fetchPopularTv.fulfilled, (state, action)=>{
+      state.popularTv.status = "success";
+      state.popularTv.data = action.payload;
+    })
+    .addCase(fetchPopularTv.rejected, (state, action)=>{
+      state.popularTv.status = "failed";
+      state.popularTv.error = action.error;
+    })
   }
 })
 
 export const netflixOriginalsSelector = (state)=>state.tv.netflixOriginals;
+
+export const popularTvSelector = (state)=>state.tv.popularTv;
 
 export default tvSlice.reducer;
