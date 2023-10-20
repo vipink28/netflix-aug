@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchNetflixOriginals, netflixOriginalsSelector } from '../features/tv/tvSlice';
+import { fetchNetflixOriginals, fetchPopularTv, netflixOriginalsSelector, popularTvSelector } from '../features/tv/tvSlice';
 import Header from '../components/Header';
 import Row from '../components/Row';
+import { platform } from '../helper/requests';
 
 function Homescreen(props) {
 
@@ -27,7 +28,10 @@ function Homescreen(props) {
             }
 
             <div className='container-fluid'>
-                <Row />
+                <Row title="Popular Shows" action={fetchPopularTv} selector={popularTvSelector} platform={platform.tv} />
+
+                <Row title="Netflix Originals" action={fetchNetflixOriginals} selector={netflixOriginalsSelector} platform={platform.tv} />
+                
             </div>
         </>
     );

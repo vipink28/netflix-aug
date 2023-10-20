@@ -7,7 +7,12 @@ function Header(props) {
     return (
         <div className='position-relative vh-100'>
             <img className='header-img' src={`https://image.tmdb.org/t/p/original${video?.backdrop_path}`} alt="" />
-            <p>{video?.overview}</p>
+            <div className='caption'>
+                <h1>{video?.name || video?.title || video?.original_title || video?.original_name}</h1>
+                <p>{video?.overview}</p>
+            </div>
+            <div className="header-vignette"></div>
+            <div className="header-bottom-vignette"></div>
         </div>
     );
 }
