@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchHeaderVideo, headerVideoSelector } from '../features/common/commonSlice';
 
 function Header(props) {
-    const {video} = props;
-    console.log(video);
+    const {item} = props;
+    const dispatch = useDispatch();
+    const details = useSelector(headerVideoSelector);
+    const video = details.data;
+    useEffect(()=>{
+        if(item){
+            dispatch(fetchHeaderVideo({platform:"tv", id:item.id}))
+        }
+    }, [item])    
 
     return (
         <div className='position-relative vh-100'>

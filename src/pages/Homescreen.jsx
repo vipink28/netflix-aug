@@ -24,7 +24,7 @@ function Homescreen(props) {
         <>
             {
             nfresults ?
-            <Header video={nfresults[randomIndex]}/>: "no data"
+            <Header item={nfresults[randomIndex]}/>: "no data"
             }
 
             <div className='container-fluid'>
