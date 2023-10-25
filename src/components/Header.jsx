@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchHeaderVideo, headerVideoSelector } from '../features/common/commonSlice';
+import Ratings from './Ratings';
+import Genre from './Genre';
 
 function Header(props) {
     const {item} = props;
@@ -11,14 +13,23 @@ function Header(props) {
         if(item){
             dispatch(fetchHeaderVideo({platform:"tv", id:item.id}))
         }
-    }, [item])    
+    }, [item])
 
     return (
         <div className='position-relative vh-100'>
             <img className='header-img' src={`https://image.tmdb.org/t/p/original${video?.backdrop_path}`} alt="" />
             <div className='caption'>
-                <h1>{video?.name || video?.title || video?.original_title || video?.original_name}</h1>
+                <h1 className='title display-2'>{video?.name || video?.title || video?.original_title || video?.original_name}</h1>
+                <h3 className='tagline display-5 text-warning'>{video?.tagline}</h3>
                 <p>{video?.overview}</p>
+                <div className='d-flex align-items-center'>
+                    {
+                        video?.genres.map((genre)=>{
+                            return <Genre genreItem = {genre}/>
+                        })
+                    }
+                </div>
+                <Ratings voteCount={video?.vote_count} voteAverage={video?.vote_average}/>
             </div>
             <div className="header-vignette"></div>
             <div className="header-bottom-vignette"></div>
