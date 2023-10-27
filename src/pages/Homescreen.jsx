@@ -12,7 +12,6 @@ function Homescreen(props) {
     //const {results} = netflixOriginals.data; - either destructure the property or assign it to variable like the following.
 
     const nfresults = netflixOriginals.data?.results;
-    console.log(nfresults);
 
     const randomIndex = Math.floor(Math.random() * nfresults?.length);
 

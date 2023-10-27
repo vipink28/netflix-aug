@@ -28,7 +28,7 @@ function Row(props) {
         {
           collectionResult?.map((item)=>{
             return(
-              <SwiperSlide>
+              <SwiperSlide key={item.id}>
               <Card video={item}/>
             </SwiperSlide>
             )

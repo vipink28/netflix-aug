@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Navigation(props) {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Fifth navbar example">
+        <nav className="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Fifth navbar example">
     <div className="container-fluid">
       <Link className="navbar-brand" to="/">Netflix</Link>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">

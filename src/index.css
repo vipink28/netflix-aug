@@ -26,7 +26,6 @@ input[type=number] {
 .navbar{
     background-image: linear-gradient(180deg,rgba(0,0,0,.7) 10%,transparent);
     transition: all .3s ease-in;
-
 }
 .navbar.scrolled{
     background-image: none;
