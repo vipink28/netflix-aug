@@ -4,6 +4,7 @@ import { fetchHeaderVideo, headerVideoSelector } from '../features/common/common
 import Ratings from './Ratings';
 import Genre from './Genre';
 import VideoPlayer from './VideoPlayer';
+import { truncateText } from '../helper';
 
 function Header(props) {
     const {item} = props;
@@ -28,9 +29,9 @@ function Header(props) {
             <>
             <img className='header-img' src={`https://image.tmdb.org/t/p/original${video?.backdrop_path}`} alt="" />
             <div className='caption'>
-                <h1 className='title display-2'>{video?.name || video?.title || video?.original_title || video?.original_name}</h1>
-                <h3 className='tagline display-5 text-warning'>{video?.tagline}</h3>
-                <p>{video?.overview}</p>
+                <h1 className='title display-2'>{truncateText(video?.name || video?.title || video?.original_title || video?.original_name, 40)}</h1>
+                <h3 className='tagline display-6 text-warning'>{video?.tagline}</h3>
+                <p>{truncateText(video?.overview, 180)}</p>
                 <div className='d-flex align-items-center'>
                     {
                         video?.genres.map((genre)=>{

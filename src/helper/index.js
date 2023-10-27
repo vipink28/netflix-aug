@@ -1,4 +1,4 @@
-export const truncateText=(str, limit)=>{
+export const truncateText=(str="", limit)=>{
     if(str.length <= limit){
         return str;
     }

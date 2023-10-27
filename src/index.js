@@ -5,6 +5,7 @@ import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle';
 import { navScroll } from './helper';
 
 const container = document.getElementById('root');

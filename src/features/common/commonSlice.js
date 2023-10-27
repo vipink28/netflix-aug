@@ -7,11 +7,24 @@ const initialState = {
         status: "idle",
         data: null,
         error: null
+    },
+    videoDetails: {
+        status: "idle",
+        data: null,
+        error: null
     }
 }
 
 export const fetchHeaderVideo = createAsyncThunk(
     'common/fetchHeaderVideo',
+    async (details) => {
+        const response = await axios(requests.getVideoById(details));
+        return response.data;
+    }
+)
+
+export const fetchVideoDetails = createAsyncThunk(
+    'common/fetchVideoDetails',
     async (details) => {
         const response = await axios(requests.getVideoById(details));
         return response.data;
@@ -36,9 +49,21 @@ const commonSlice = createSlice({
                 state.headerVideo.status = "failed";
                 state.headerVideo.error = action.error;
             })
+            .addCase(fetchVideoDetails.pending, (state, action) => {
+                state.videoDetails.status = "loading";
+            })
+            .addCase(fetchVideoDetails.fulfilled, (state, action) => {
+                state.videoDetails.status = "success";
+                state.videoDetails.data = action.payload;
+            })
+            .addCase(fetchVideoDetails.rejected, (state, action) => {
+                state.videoDetails.status = "failed";
+                state.videoDetails.error = action.error;
+            })
     }
 })
 
 export const headerVideoSelector = (state)=>state.common.headerVideo;
+export const videoDetailsSelector = (state)=>state.common.videoDetails;
 
 export default commonSlice.reducer;
