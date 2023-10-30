@@ -163,7 +163,7 @@ input[type=number] {
     position: relative;
     z-index: 19;
 }
-#videoDetails .modal-dialog{
+#videopopup .modal-dialog{
     max-width: 1100px;
 }
 .modal-content{

@@ -1,12 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchVideoDetails } from '../features/common/commonSlice';
+import { fetchVideoDetails, platformAction } from '../features/common/commonSlice';
 
 function Card(props) {
     const { video, platform } = props;
     const dispatch = useDispatch();
     const showDetails = ()=>{
-        dispatch(fetchVideoDetails({platform:platform, id:video.id}))
+        dispatch(fetchVideoDetails({platform:platform, id:video.id}));
+        dispatch(platformAction(platform));
     }
     return (
         <div className='card text-white' data-bs-toggle="modal" data-bs-target="#videopopup" onClick={showDetails}>

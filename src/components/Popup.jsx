@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { videoDetailsSelector } from '../features/common/commonSlice';
-
+import { platformSelector, videoDetailsSelector } from '../features/common/commonSlice';
+import axios from '../helper/axios';
+import { requests } from '../helper/requests';
+import Card from './Card';
 function Popup(props) {
     const { data } = useSelector(videoDetailsSelector);
+    const platform = useSelector(platformSelector);
+
+    const [recommended, setRecommended] = useState(null);
+    const [similar, setSimilar]=useState(null);
+
+    const fetchRecommended = async(platform, id)=>{
+      const response = await axios.get(requests.getRecommendedVideos(platform, id));
+      setRecommended(response.data.results);
+    }
+
+    useEffect(()=>{
+      if(data){
+        fetchRecommended(platform, data.id)
+      }
+    }, [data])
+
     return (
         <div className="modal" tabIndex="-1" id='videopopup'>
         <div className="modal-dialog">
@@ -13,6 +31,24 @@ function Popup(props) {
             </div>
             <div className="modal-body">
             <h3 className='title display-2'>{data?.name || data?.title || data?.original_title || data?.original_name}</h3>
+
+          <div className='row gy-2'>
+            {
+              recommended?.map((rec, index)=>{
+                
+                return(
+                  index < 6 ?
+                  <div className="col-md-4">
+                    <Card video={rec} platform={platform}/>
+                  </div>: ""
+                )
+              })
+            }
+            </div>
+
+            
+
+
             </div>           
           </div>
         </div>
