@@ -7,14 +7,14 @@ import VideoPlayer from './VideoPlayer';
 import { truncateText } from '../helper';
 
 function Header(props) {
-    const {item} = props;
+    const {item, platform} = props;
     const [showTrailer, setShowTrailer] = useState(false);
     const dispatch = useDispatch();
     const details = useSelector(headerVideoSelector);
     const video = details.data;
     useEffect(()=>{
         if(item){
-            dispatch(fetchHeaderVideo({platform:"tv", id:item.id}))
+            dispatch(fetchHeaderVideo({platform:platform, id:item.id}))
         }
     }, [item])
 

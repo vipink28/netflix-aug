@@ -15,7 +15,7 @@ function App() {
    <Navigation />
     <Routes>
       <Route path="/" element={<Homescreen />}></Route>
-      <Route path="/browse" element={<Browse />}></Route>
+      <Route path="/browse/:platform" element={<Browse />}></Route>
       <Route path="/browsebygenre" element={<BrowseByGenre />}></Route>
     </Routes>
     <Popup />

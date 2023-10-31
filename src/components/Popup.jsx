@@ -4,6 +4,7 @@ import { platformSelector, videoDetailsSelector } from '../features/common/commo
 import axios from '../helper/axios';
 import { requests } from '../helper/requests';
 import Card from './Card';
+import VideoPlayer from './VideoPlayer';
 function Popup(props) {
     const { data } = useSelector(videoDetailsSelector);
     const platform = useSelector(platformSelector);
@@ -30,12 +31,22 @@ function Popup(props) {
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
+            <div className='position-relative mb-3'>
+            {
+            data?.videos.results.length > 0 ?
+            <VideoPlayer videoList={data.videos.results}/> :            
+            <img className='img-fluid' src={`https://image.tmdb.org/t/p/original${data?.backdrop_path}`} alt="" />
+            
+            }
+            </div>
+            
+
+
             <h3 className='title display-2'>{data?.name || data?.title || data?.original_title || data?.original_name}</h3>
 
           <div className='row gy-2'>
             {
-              recommended?.map((rec, index)=>{
-                
+              recommended?.map((rec, index)=>{                
                 return(
                   index < 6 ?
                   <div className="col-md-4">
