@@ -19,7 +19,6 @@ function Row(props) {
 
   const [videosByGenre, setVideosByGenre] = useState(null);
   const fetchVideosByGenre = async (type, id) => {
-
     const response = await axios.get(requests.getVideosByGenre(type, id));
     setVideosByGenre(response.data.results);
   }

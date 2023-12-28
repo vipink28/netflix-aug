@@ -50,7 +50,7 @@ function Browse(props) {
                 {
                     genreList?.map((genre, index) => (
                         index < 6 ?
-                            <Row key={genre.id} genre={genre} selector={() => { }} platform={platform} /> : ""
+                            <Row key={genre.id} genre={genre} title={genre?.name} selector={() => { }} platform={platform} /> : ""
                     ))
 
                 }

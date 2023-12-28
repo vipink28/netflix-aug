@@ -11,16 +11,16 @@ import Popup from './components/Popup';
 
 function App() {
   return (
-   <BrowserRouter>
-   <Navigation />
-    <Routes>
-      <Route path="/" element={<Homescreen />}></Route>
-      <Route path="/browse/:platform" element={<Browse />}></Route>
-      <Route path="/browsebygenre" element={<BrowseByGenre />}></Route>
-    </Routes>
-    <Popup />
-   </BrowserRouter>
-   
+    <BrowserRouter>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<Homescreen />}></Route>
+        <Route path="/browse/:platform" element={<Browse />}></Route>
+        <Route path="/browsebygenre/:platform/:genreid" element={<BrowseByGenre />}></Route>
+      </Routes>
+      <Popup />
+    </BrowserRouter>
+
   );
 }
 
