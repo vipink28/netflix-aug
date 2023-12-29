@@ -8,6 +8,7 @@ import Browse from './pages/Browse';
 import BrowseByGenre from './pages/BrowseByGenre';
 import Navigation from './components/Navigation';
 import Popup from './components/Popup';
+import Search from './pages/Search';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Homescreen />}></Route>
         <Route path="/browse/:platform" element={<Browse />}></Route>
         <Route path="/browsebygenre/:platform/:genreid" element={<BrowseByGenre />}></Route>
+        <Route path="/search" element={<Search />}></Route>
       </Routes>
       <Popup />
     </BrowserRouter>

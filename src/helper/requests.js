@@ -7,7 +7,8 @@ export var requests = {
     getSimilarVideos: (platform, id) => `${platform}/${id}/similar?api_key=${API_KEY}&language=en-US&page=1`,
     getRecommendedVideos: (platform, id) => `${platform}/${id}/recommendations?api_key=${API_KEY}&language=en-US&page=1`,
     getGenreList: (platform) => `genre/${platform}/list?api_key=${API_KEY}&language=en-US`,
-    getVideosByGenre: (platform, genreId) => `discover/${platform}?api_key=${API_KEY}&language=en-US&page=1&with_genres=${genreId}`
+    getVideosByGenre: (platform, genreId) => `discover/${platform}?api_key=${API_KEY}&language=en-US&page=1&with_genres=${genreId}`,
+    getBySearch: (platform, querystring) => `search/${platform}?api_key=${API_KEY}&language=en-US&page=1&query=${querystring}`
 }
 
 

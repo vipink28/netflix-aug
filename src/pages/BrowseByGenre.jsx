@@ -8,6 +8,7 @@ function BrowseByGenre(props) {
     const { platform, genreid } = useParams();
     const [genreList, setGenreList] = useState(null);
     const [videosByGenre, setVideosByGenre] = useState(null);
+    const [currentPlatform, setCurrentPlatform] = useState("movie");
 
     const fetchVideosByGenre = async (type, id) => {
         const response = await axios.get(requests.getVideosByGenre(type, id));
@@ -34,16 +35,28 @@ function BrowseByGenre(props) {
         }
     }, [platform, genreid])
 
+
+    const platformChange = (e) => {
+        const { value } = e.target;
+        fetchGenreList(value);
+        setCurrentPlatform(value);
+    }
+
+    const genreChange = (e) => {
+        const { value } = e.target;
+        fetchVideosByGenre(currentPlatform, value);
+    }
+
     return (
         <div className='container-fluid py-5'>
             <div className='py-3'>
                 <p>Filter Options</p>
-                <select name="platform">
-                    <option value="tv">Tv</option>
+                <select name="platform" onChange={platformChange}>
                     <option value="movie">Movies</option>
+                    <option value="tv">Tv</option>
                 </select>
 
-                <select name="genres">
+                <select name="genres" onChange={genreChange}>
                     {
                         genreList?.map((genre) => (
                             <option value={genre?.id}>{genre?.name}</option>

@@ -1,8 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { searchAction } from '../features/common/commonSlice';
 
 
 function Navigation(props) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    const { value } = e.target;
+    if (value.length > 3) {
+      dispatch(searchAction(value));
+      navigate("/search");
+    }
+  }
   return (
     <nav className="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Fifth navbar example">
       <div className="container-fluid">
@@ -28,7 +40,7 @@ function Navigation(props) {
 
           </ul>
           <form role="search">
-            <input className="form-control" type="search" placeholder="Search" aria-label="Search" />
+            <input className="form-control" type="search" placeholder="Search" aria-label="Search" onChange={handleSearch} />
           </form>
         </div>
       </div>
